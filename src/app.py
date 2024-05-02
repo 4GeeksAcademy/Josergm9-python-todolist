@@ -16,15 +16,15 @@ def add_new_todo():
     todos.append(request_body)
     return jsonify (todos)
 
+
 @app.route('/todos/<int:position>', methods=['DELETE'])
 def delete_todo(position):
-    print("This is the position to delete:", position)
-    if position < len(todos):
+    print("Esta es la posicion que se elimino:", position)
+    if 0 <= position < len(todos):
         todos.pop(position)
         return jsonify(todos), 200
     else:
-        return jsonify({"error": "indice fuera de rango"}), 404
-
+        return jsonify({"error": "indice fuera de rango", "todos": todos}), 404
 
 
 if __name__ == '__main__':
